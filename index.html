@@ -45,14 +45,13 @@
     }
     .info-grid {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       text-align: left;
       padding: 10px 0;
     }
     .info-grid p {
-      flex: 1 1 45%;
-      margin: 10px;
+      flex: 1;
+      margin: 5px 10px;
     }
     .documentation {
       margin-top: 20px;
@@ -114,7 +113,7 @@
       <div class="info-grid">
         <p><strong>Status:</strong> Student</p>
         <p><strong>Program Name:</strong> <span id="program"></span></p>
-        <p><strong>Degree:</strong> <span id="degree"></span></p>
+        <!-- Degree silindi -->
       </div>
 
       <div class="section-title">DOCUMENTATION</div>
@@ -142,12 +141,9 @@
         if (students[code]) {
           const s = students[code];
 
-          document.getElementById("firstName").textContent = "Babak";
-          document.getElementById("lastName").textContent = "Abdullayev";
-          // Remove or comment out this line since dob is no longer used
-          // document.getElementById("dob").textContent = s.dob;
+          document.getElementById("firstName").textContent = "Hasan";
+          document.getElementById("lastName").textContent = "Mammadov";
           document.getElementById("program").textContent = s.program;
-          document.getElementById("degree").textContent = s.degree;
           document.getElementById("studentCodeText").textContent = s.studentCode;
 
           errorBox.textContent = '';
