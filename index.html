@@ -43,17 +43,17 @@
       font-size: 18px;
       margin-top: 20px;
     }
-    .info-grid {
+    .info-grid-row {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
-      padding: 15px 0;
+      flex-wrap: wrap;
+      padding: 10px 0;
     }
-    .info-grid p {
-      margin: 8px 0;
+    .info-grid-row p {
+      margin: 5px 10px;
       flex: 1;
-      min-width: 45%;
-      white-space: nowrap;
+      min-width: 150px;
+      text-align: left;
     }
     .documentation {
       margin-top: 20px;
@@ -83,7 +83,7 @@
     }
     .result-box {
       margin-top: 40px;
-      display: none;
+      display: block; /* İstədiyin kimi səhifə açıldığında göstərilsin */
     }
     .error-message {
       color: red;
@@ -100,21 +100,21 @@
 
     <div id="result" class="result-box">
       <div class="header">
-        <img src="https://github.com/italianartacademy1-rgb/student-verify/blob/main/profile-photo.jpg.jpg?raw=true" alt="Profile Photo" class="profile-photo" style="object-fit: contain;">
+        <img src="https://github.com/italianartacademy1-rgb/student-verify/blob/main/profile-photo.jpg.jpg?raw=true" alt="Profile Photo" class="profile-photo">
         <img src="Logo_PAIU-scaled2.webp" alt="University Logo" class="logo">
       </div>
 
       <div class="section-title">PERSONAL INFORMATION</div>
-      <div class="info-grid">
-        <p><strong>First Name:</strong> Babak</p>
-        <p><strong>Last Name:</strong> Abdullayev</p>
-        <p><strong>Student ID:</strong> PAIU1840115</p>
+      <div class="info-grid-row">
+        <p><strong>First Name:</strong> <span id="firstName">Babak</span></p>
+        <p><strong>Last Name:</strong> <span id="lastName">Abdullayev</span></p>
+        <p><strong>Student ID:</strong> <span id="studentCodeText">PAIU1840115</span></p>
       </div>
 
       <div class="section-title">ACADEMIC INFORMATION</div>
-      <div class="info-grid">
+      <div class="info-grid-row">
         <p><strong>Status:</strong> Student</p>
-        <p><strong>Program Name:</strong> PhD in Business Administration (Dubai/On Campus)</p>
+        <p><strong>Program Name:</strong> <span id="program">PhD in Business Administration (Dubai/On Campus)</span></p>
       </div>
 
       <div class="section-title">DOCUMENTATION</div>
