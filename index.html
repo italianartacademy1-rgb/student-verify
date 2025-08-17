@@ -2,29 +2,140 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Certificate Verification</title>
+  <title>Student Verification</title>
   <style>
-    body { background:#111827; color:white; font-family:sans-serif; text-align:center; }
-    .box { max-width:700px; margin:50px auto; background:#1f2937; padding:20px; border-radius:10px; }
-    input { width:80%; padding:10px; margin:10px 0; font-size:16px; border-radius:5px; border:none; }
-    button { background:red; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-size:16px; }
-    .result { margin-top:20px; padding:15px; background:#374151; border-radius:10px; display:none; text-align:left; }
-    img { max-width:100%; border-radius:10px; margin-top:10px; }
+    body {
+      background-color: #111827;
+      font-family: Arial, sans-serif;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+    }
+    .profile-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+    .logo {
+      height: 100px;
+    }
+    .section-title {
+      background-color: #1f2937;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      text-align: left;
+      padding: 10px 0;
+    }
+    .info-grid p {
+      flex: 1 1 45%;
+      margin: 10px;
+    }
+    .documentation {
+      margin-top: 20px;
+    }
+    .portal-button {
+      background-color: #1f2937;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    input, button {
+      margin-top: 30px;
+      padding: 10px;
+      width: 60%;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background-color: red;
+      color: white;
+      cursor: pointer;
+    }
+    .result-box {
+      margin-top: 40px;
+      display: none;
+    }
+    .error-message {
+      color: red;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <div class="box">
+  <div class="container">
     <h2>Please Enter Your Student Code</h2>
     <input type="text" id="studentCode" placeholder="Student Code">
     <br>
     <button onclick="verifyStudent()">VERIFY</button>
-    <div id="result" class="result"></div>
+
+    <div id="result" class="result-box">
+      <div class="header">
+        <img src="profile-photo.jpg" alt="Profile Photo" class="profile-photo">
+        <img src="Logo_PAIU-scaled2.webp" alt="University Logo" class="logo">
+      </div>
+
+      <div class="section-title">PERSONAL INFORMATION</div>
+      <div class="info-grid">
+        <p><strong>First Name:</strong> <span id="firstName"></span></p>
+        <p><strong>Last Name:</strong> <span id="lastName"></span></p>
+        <p><strong>Place of Birth:</strong> <span id="placeOfBirth"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+        <p><strong>Student ID:</strong> <span id="studentCodeText"></span></p>
+      </div>
+
+      <div class="section-title">ACADEMIC INFORMATION</div>
+      <div class="info-grid">
+        <p><strong>Status:</strong> Student</p>
+        <p><strong>Program Name:</strong> <span id="program"></span></p>
+        <p><strong>Degree:</strong> <span id="degree"></span></p>
+      </div>
+
+      <div class="section-title">DOCUMENTATION</div>
+      <div class="documentation">
+        <p><strong>FOR STUDENTS</strong></p>
+        <p>To view your documents like Acceptance Letter, Diplomas, and Transcripts, please log in to our Student Portal. Navigate and hover over your profile in the top right corner.</p>
+        <p>All available documents will be listed in the "My Files" section.</p>
+        <button class="portal-button" onclick="window.location.href='https://your-student-portal-link.com'">Student Portal</button>
+      </div>
+    </div>
+
+    <div id="errorMessage" class="error-message"></div>
   </div>
 
   <script>
     async function verifyStudent() {
       const code = document.getElementById("studentCode").value.trim();
       const resultBox = document.getElementById("result");
+      const errorBox = document.getElementById("errorMessage");
 
       try {
         const response = await fetch("students.json");
@@ -32,24 +143,24 @@
 
         if (students[code]) {
           const s = students[code];
-          resultBox.innerHTML = `
-            <img src="Logo_PAIU-scaled2.webp" alt="University Logo" style="max-width:150px; background-color:white; padding:10px; border-radius:5px; margin-bottom:15px;">
-            <h3>✅ Student Information Verified</h3>
-            <p><strong>Name:</strong> ${s.name}</p>
-            <p><strong>Place of Birth:</strong> ${s.placeOfBirth}</p>
-            <p><strong>Date of Birth:</strong> ${s.dob}</p>
-            <p><strong>Program:</strong> ${s.program}</p>
-            <p><strong>Degree:</strong> ${s.degree}</p>
-            <p><strong>Student Code:</strong> ${s.studentCode}</p>
-          `;
+
+          document.getElementById("firstName").textContent = s.firstName;
+          document.getElementById("lastName").textContent = s.lastName;
+          document.getElementById("placeOfBirth").textContent = s.placeOfBirth;
+          document.getElementById("dob").textContent = s.dob;
+          document.getElementById("program").textContent = s.program;
+          document.getElementById("degree").textContent = s.degree;
+          document.getElementById("studentCodeText").textContent = s.studentCode;
+
+          errorBox.textContent = '';
           resultBox.style.display = "block";
         } else {
-          resultBox.innerHTML = `<p style="color:red">❌ No student found with this code</p>`;
-          resultBox.style.display = "block";
+          resultBox.style.display = "none";
+          errorBox.textContent = "❌ No student found with this code.";
         }
       } catch (error) {
-        resultBox.innerHTML = `<p style="color:orange">⚠️ Unable to load student data. Please run this project on a server (e.g., Netlify, Vercel, or Live Server in VS Code).</p>`;
-        resultBox.style.display = "block";
+        resultBox.style.display = "none";
+        errorBox.textContent = "⚠️ Unable to load student data. Please use a live server.";
       }
     }
   </script>
