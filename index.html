@@ -24,6 +24,7 @@
       justify-content: space-between;
       align-items: center;
       padding-bottom: 20px;
+      flex-wrap: wrap; /* Flex elemanlarını mobil uyğunlaşdırmaq üçün */
     }
     .profile-photo {
       width: 100px;
@@ -45,13 +46,14 @@
     }
     .info-grid-row {
       display: flex;
-      gap: 30px; /* Balanslı aralıq */
+      gap: 30px;
       flex-wrap: wrap;
       padding: 10px 0;
+      justify-content: center; /* Hər iki sütunu ortalamaq üçün */
     }
     .info-grid-row p {
       margin: 0;
-      flex: none; /* Elementlər öz ölçüsünə görə */
+      flex: none;
       min-width: 150px;
       text-align: left;
     }
@@ -83,19 +85,48 @@
     }
     .result-box {
       margin-top: 40px;
-      display: none; /* Məlumatlar əvvəlcə gizlidir */
+      display: none;
     }
     .error-message {
       color: red;
       margin-top: 20px;
     }
-    /* Blue (Göy) color adjustments */
     .blue-text {
       color: #1E40AF;
     }
-    /* Dark Blue color adjustments */
     .dark-blue-text {
       color: #1D3C6E;
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      input, button {
+        width: 80%; /* Mobil cihazlarda daha geniş düymələr */
+      }
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .profile-photo, .logo {
+        margin-bottom: 10px;
+      }
+      .info-grid-row {
+        justify-content: center;
+        gap: 15px; /* Sütunlar arasında daha dar məsafə */
+      }
+      .info-grid-row p {
+        min-width: 120px;
+      }
+      .section-title {
+        font-size: 16px;
+      }
+      .portal-button {
+        width: 100%;
+        padding: 12px;
+      }
     }
   </style>
 </head>
