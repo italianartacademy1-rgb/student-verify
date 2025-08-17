@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobil uyumluluq üçün meta tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Verification</title>
   <style>
     body {
@@ -22,9 +22,10 @@
     }
     .header {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-between; /* Şəkilləri yan-yana qoymaq üçün */
       align-items: center;
       padding-bottom: 20px;
+      gap: 20px; /* Foto və logo arasında məsafə */
     }
     .profile-photo {
       width: 100px;
@@ -45,7 +46,7 @@
       margin-top: 20px;
     }
     .info-grid-row {
-      display: block; /* Elementləri alt-üst yazmaq üçün block düzülüşü */
+      display: block;
       margin-top: 10px;
     }
     .info-grid-row p {
@@ -98,20 +99,21 @@
     @media (max-width: 768px) {
       .container {
         padding: 15px;
-        width: 90%; /* Daha kiçik cihazlarda daha geniş görünməsi üçün */
+        width: 90%;
       }
       input, button {
-        width: 80%; /* Mobil cihazlarda düymələri daha geniş etmək */
+        width: 80%;
       }
       .header {
         flex-direction: column;
         text-align: center;
+        gap: 15px; /* Mobil cihazlarda daha yaxın məsafə */
       }
       .profile-photo, .logo {
-        margin-bottom: 15px; /* Mobil üçün şəkillərin altına boşluq əlavə et */
+        margin-bottom: 15px;
       }
       .info-grid-row {
-        gap: 15px; /* Sütunlar arasında daha dar məsafə */
+        gap: 15px;
         justify-content: center;
       }
       .info-grid-row p {
