@@ -45,12 +45,12 @@
     }
     .info-grid {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column; /* Change this to column to stack elements */
+      align-items: flex-start;
       text-align: left;
       padding: 10px 0;
     }
     .info-grid p {
-      flex: 1;
       margin: 5px 10px;
     }
     .documentation {
@@ -113,7 +113,6 @@
       <div class="info-grid">
         <p><strong>Status:</strong> Student</p>
         <p><strong>Program Name:</strong> <span id="program"></span></p>
-        <!-- Degree silindi -->
       </div>
 
       <div class="section-title">DOCUMENTATION</div>
@@ -141,8 +140,8 @@
         if (students[code]) {
           const s = students[code];
 
-          document.getElementById("firstName").textContent = "Babak";
-          document.getElementById("lastName").textContent = "Abdullayev";
+          document.getElementById("firstName").textContent = "Hasan";
+          document.getElementById("lastName").textContent = "Mammadov";
           document.getElementById("program").textContent = s.program;
           document.getElementById("studentCodeText").textContent = s.studentCode;
 
