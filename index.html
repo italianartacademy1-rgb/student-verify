@@ -29,7 +29,7 @@
       width: 100px;
       height: 100px;
       border-radius: 5px;
-      object-fit: cover;
+      object-fit: contain;
     }
     .logo {
       height: 100px;
@@ -144,7 +144,8 @@
 
           document.getElementById("firstName").textContent = "Babak";
           document.getElementById("lastName").textContent = "Abdullayev";
-          document.getElementById("dob").textContent = s.dob;
+          // Remove or comment out this line since dob is no longer used
+          // document.getElementById("dob").textContent = s.dob;
           document.getElementById("program").textContent = s.program;
           document.getElementById("degree").textContent = s.degree;
           document.getElementById("studentCodeText").textContent = s.studentCode;
