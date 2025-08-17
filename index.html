@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Certificate Verification</title>
+  <style>
+    body { background:#111827; color:white; font-family:sans-serif; text-align:center; }
+    .box { max-width:700px; margin:50px auto; background:#1f2937; padding:20px; border-radius:10px; }
+    input { width:80%; padding:10px; margin:10px 0; font-size:16px; border-radius:5px; border:none; }
+    button { background:red; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-size:16px; }
+    .result { margin-top:20px; padding:15px; background:#374151; border-radius:10px; display:none; text-align:left; }
+    img { max-width:100%; border-radius:10px; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Please Enter Your Student Code</h2>
+    <input type="text" id="studentCode" placeholder="Student Code">
+    <br>
+    <button onclick="verifyStudent()">VERIFY</button>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    async function verifyStudent() {
+      const code = document.getElementById("studentCode").value.trim();
+      const resultBox = document.getElementById("result");
+
+      try {
+        const response = await fetch("students.json");
+        const students = await response.json();
+
+        if (students[code]) {
+          const s = students[code];
+          resultBox.innerHTML = `
+            <h3>✅ Certificate Verified</h3>
+            <p><strong>Name:</strong> ${s.name}</p>
+            <p><strong>Place of Birth:</strong> ${s.placeOfBirth}</p>
+            <p><strong>Date of Birth:</strong> ${s.dob}</p>
+            <p><strong>Program:</strong> ${s.program}</p>
+            <p><strong>Degree:</strong> ${s.degree}</p>
+            <p><strong>Student Code:</strong> ${s.studentCode}</p>
+            <img src="${s.certificate}" alt="Certificate image">
+          `;
+          resultBox.style.display = "block";
+        } else {
+          resultBox.innerHTML = `<p style="color:red">❌ No student found with this code</p>`;
+          resultBox.style.display = "block";
+        }
+      } catch (error) {
+        resultBox.innerHTML = `<p style="color:orange">⚠️ Unable to load student data. Please run this project on a server (e.g., Netlify, Vercel, or Live Server in VS Code).</p>`;
+        resultBox.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
