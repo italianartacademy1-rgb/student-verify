@@ -22,10 +22,11 @@
     }
     .header {
       display: flex;
-      justify-content: space-between; /* Şəkilləri yan-yana qoymaq üçün */
-      align-items: center;
+      flex-direction: row; /* Şəkillər yan-yana yerləşəcək */
+      justify-content: center; /* Ortada hizalayır */
+      align-items: center; /* Düz xətt üzrə ortalayır */
+      gap: 20px; /* Şəkillər arasında məsafə */
       padding-bottom: 20px;
-      gap: 20px; /* Foto və logo arasında məsafə */
     }
     .profile-photo {
       width: 100px;
@@ -107,7 +108,7 @@
       .header {
         flex-direction: column;
         text-align: center;
-        gap: 15px; /* Mobil cihazlarda daha yaxın məsafə */
+        gap: 15px;
       }
       .profile-photo, .logo {
         margin-bottom: 15px;
