@@ -22,10 +22,10 @@
     }
     .header {
       display: flex;
-      flex-direction: row; /* Şəkillər yan-yana yerləşəcək */
+      flex-direction: row; /* Yan-yana */
       justify-content: center; /* Ortada hizalayır */
-      align-items: center; /* Düz xətt üzrə ortalayır */
-      gap: 20px; /* Şəkillər arasında məsafə */
+      align-items: center; /* Eyni xətt üzrə düzür */
+      gap: 20px; /* Arada məsafə */
       padding-bottom: 20px;
     }
     .profile-photo {
@@ -105,13 +105,10 @@
       input, button {
         width: 80%;
       }
+      /* ❌ Artıq column yoxdur, mobil üçün də row qalır */
       .header {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row; 
         gap: 15px;
-      }
-      .profile-photo, .logo {
-        margin-bottom: 15px;
       }
       .info-grid-row {
         gap: 15px;
@@ -184,7 +181,6 @@
       const resultBox = document.getElementById("result");
       const errorBox = document.getElementById("errorMessage");
 
-      // Əgər tələbə kodu daxil edilməyibsə
       if (!code) {
         errorBox.textContent = "❌ Please enter a valid student code.";
         resultBox.style.display = "none";
@@ -204,7 +200,7 @@
           document.getElementById("studentCodeText").textContent = s.studentCode;
 
           errorBox.textContent = '';
-          resultBox.style.display = "block"; // Düzgün kod daxil edildikdə məlumat göstəriləcək
+          resultBox.style.display = "block";
         } else {
           resultBox.style.display = "none";
           errorBox.textContent = "❌ No student found with this code.";
