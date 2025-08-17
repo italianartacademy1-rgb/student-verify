@@ -45,13 +45,15 @@
     }
     .info-grid {
       display: flex;
-      flex-direction: column; /* Change this to column to stack elements */
-      align-items: flex-start;
-      text-align: left;
-      padding: 10px 0;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 15px 0;
     }
     .info-grid p {
-      margin: 5px 10px;
+      margin: 8px 0;
+      flex: 1;
+      min-width: 45%;
+      white-space: nowrap;
     }
     .documentation {
       margin-top: 20px;
@@ -104,15 +106,15 @@
 
       <div class="section-title">PERSONAL INFORMATION</div>
       <div class="info-grid">
-        <p><strong>First Name:</strong> <span id="firstName"></span></p>
-        <p><strong>Last Name:</strong> <span id="lastName"></span></p>
-        <p><strong>Student ID:</strong> <span id="studentCodeText"></span></p>
+        <p><strong>First Name:</strong> Babak</p>
+        <p><strong>Last Name:</strong> Abdullayev</p>
+        <p><strong>Student ID:</strong> PAIU1840115</p>
       </div>
 
       <div class="section-title">ACADEMIC INFORMATION</div>
       <div class="info-grid">
         <p><strong>Status:</strong> Student</p>
-        <p><strong>Program Name:</strong> <span id="program"></span></p>
+        <p><strong>Program Name:</strong> PhD in Business Administration (Dubai/On Campus)</p>
       </div>
 
       <div class="section-title">DOCUMENTATION</div>
