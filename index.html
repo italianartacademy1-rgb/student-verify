@@ -45,13 +45,13 @@
     }
     .info-grid-row {
       display: flex;
-      justify-content: space-between;
+      gap: 30px; /* Balanslı aralıq */
       flex-wrap: wrap;
       padding: 10px 0;
     }
     .info-grid-row p {
-      margin: 5px 10px;
-      flex: 1;
+      margin: 0;
+      flex: none; /* Elementlər öz ölçüsünə görə */
       min-width: 150px;
       text-align: left;
     }
@@ -83,7 +83,7 @@
     }
     .result-box {
       margin-top: 40px;
-      display: block; /* İstədiyin kimi səhifə açıldığında göstərilsin */
+      display: block; /* Səhifə açılanda görünür */
     }
     .error-message {
       color: red;
