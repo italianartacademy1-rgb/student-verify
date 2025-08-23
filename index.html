@@ -1,10 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Verification</title>
-  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="icon" href="/favicon.png" type="image/png" />
+
+  <!-- Schema.org JSON-LD metadata başladı -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Paris American University – Student Verification Portal",
+    "alternateName": "PAIU Verification Portal",
+    "url": "https://paris-american.org",
+    "applicationCategory": "Education",
+    "operatingSystem": "All",
+    "description": "This is the official student verification portal of Paris American University (PAIU), a France-recognized higher education institution. The platform is primarily used for confirming the academic status of students, especially PhD candidates located at the university’s Dubai campus.",
+    "provider": {
+      "@type": "CollegeOrUniversity",
+      "name": "Paris American University",
+      "alternateName": "PAIU",
+      "foundingDate": "2023",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "2 avenue du Général Balfourier",
+          "addressLocality": "Paris",
+          "postalCode": "75016",
+          "addressCountry": "FR"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Amberjem Tower, 42nd Floor, Sheikh Khalifa Bin Zayed Street, Al Rashidiya 3",
+          "addressLocality": "Ajman",
+          "addressRegion": "Ajman",
+          "addressCountry": "AE"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Student Office",
+        "email": "secretaire@paris-american.org"
+      }
+    }
+  }
+  </script>
+  <!-- Schema.org JSON-LD metadata bitdi -->
+
   <style>
     body {
       background-color: #111827;
@@ -101,14 +144,18 @@
 <body>
   <div class="container">
     <h2>Please Enter Your Student Code</h2>
-    <input type="text" id="studentCode" placeholder="Student Code">
-    <br>
+    <input type="text" id="studentCode" placeholder="Student Code" />
+    <br />
     <button onclick="verifyStudent()">VERIFY</button>
 
     <div id="result" class="result-box">
       <div class="header">
-        <img src="Logo_PAIU-scaled2.webp" alt="University Logo" class="logo">
-        <img src="https://github.com/italianartacademy1-rgb/student-verify/blob/main/profile-photo.jpg.jpg?raw=true" alt="Profile Photo" class="profile-photo">
+        <img src="Logo_PAIU-scaled2.webp" alt="University Logo" class="logo" />
+        <img
+          src="https://github.com/italianartacademy1-rgb/student-verify/blob/main/profile-photo.jpg.jpg?raw=true"
+          alt="Profile Photo"
+          class="profile-photo"
+        />
       </div>
 
       <div class="section-title">PERSONAL INFORMATION</div>
@@ -127,7 +174,10 @@
       <div class="section-title">DOCUMENTATION</div>
       <div class="documentation">
         <p><strong class="blue-text">FOR STUDENTS</strong></p>
-        <p class="blue-text">To view your documents like Acceptance Letter, Diplomas, and Transcripts, please log in to our Student Portal. Navigate and hover over your profile in the top right corner.</p>
+        <p class="blue-text">
+          To view your documents like Acceptance Letter, Diplomas, and Transcripts, please log in to our Student Portal.
+          Navigate and hover over your profile in the top right corner.
+        </p>
         <p class="blue-text">All available documents will be listed in the "My Files" section.</p>
         <!-- Düyməni student-portal.html səhifəsinə yönləndirdik -->
         <button class="portal-button" onclick="window.location.href='student-portal.html'">Student Portal</button>
@@ -161,7 +211,7 @@
           document.getElementById("program").textContent = s.program;
           document.getElementById("studentCodeText").textContent = s.studentCode;
 
-          errorBox.textContent = '';
+          errorBox.textContent = "";
           resultBox.style.display = "block";
         } else {
           resultBox.style.display = "none";
