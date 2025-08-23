@@ -1,0 +1,14 @@
+[
+  {
+    "studentId": "PAIU1840115",
+    "password": "artroma",
+    "name": "John Doe",
+    "program": "Fine Arts"
+  },
+  {
+    "studentId": "PAIU1840220",
+    "password": "mypass123",
+    "name": "Jane Smith",
+    "program": "Design"
+  }
+]
