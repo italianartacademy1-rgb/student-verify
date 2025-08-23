@@ -43,7 +43,7 @@
       border:1px solid #ddd;
       border-radius:6px;
       box-shadow:0 4px 10px rgba(0,0,0,0.1);
-      min-width:200px;
+      min-width:220px;
       z-index:1000;
     }
     .dropdown p {
@@ -52,19 +52,25 @@
       font-weight:bold;
       color:#1D3C6E;
       border-bottom:1px solid #eee;
+      background:#f9f9f9;
     }
     .dropdown a {
       display:block;
       padding:10px;
       text-decoration:none;
       color:#333;
+      transition: background 0.2s;
     }
     .dropdown a:hover {
       background:#f0f4fa;
     }
-    .profile:hover .dropdown {
+
+    /* 🔥 Əlavə düzəliş: həm profil, həm də menyu hoverdə qalanda açıq olsun */
+    .profile:hover .dropdown,
+    .dropdown:hover {
       display:block;
     }
+
     .content {
       padding:40px 20px;
       max-width:800px;
