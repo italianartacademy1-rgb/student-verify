@@ -67,22 +67,49 @@
     button:hover {
       background-color: #163058;
     }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
   <div class="portal-container">
-    <!-- Logo: öz universitet logo linkini burada dəyişə bilərsən -->
     <img src="Logo_PAIU-scaled2.webp" alt="PAIU Logo" class="portal-logo">
 
     <h1>Student Portal</h1>
     <p>Login to access your courses, documents, and more.</p>
 
-    <form>
-      <input type="text" placeholder="Student ID" required>
-      <input type="password" placeholder="Password" required>
-      <button type="submit">Login</button>
-    </form>
+    <input type="text" id="studentId" placeholder="Student ID" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="login()">Login</button>
+    <p id="errorMsg" class="error"></p>
   </div>
+
+  <script>
+    async function login() {
+      const id = document.getElementById("studentId").value.trim();
+      const pass = document.getElementById("password").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+
+      try {
+        const response = await fetch("login-users.json");
+        const students = await response.json();
+
+        const user = students.find(s => s.studentId === id && s.password === pass);
+
+        if (user) {
+          // Uğurlu giriş
+          window.location.href = "dashboard.html";
+        } else {
+          errorMsg.textContent = "❌ Yanlış Student ID və ya Password";
+        }
+      } catch (err) {
+        errorMsg.textContent = "Xəta: login-users.json oxunmadı!";
+      }
+    }
+  </script>
 </body>
 </html>
-
