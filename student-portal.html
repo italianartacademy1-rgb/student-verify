@@ -40,26 +40,23 @@
 
   <script>
     async function loadUsers() {
-      // 1) Rootdan JSON
       try {
         const r1 = await fetch('/login-users.json?ts=' + Date.now(), { cache: 'no-store' });
         if (r1.ok) return await r1.json();
       } catch (e) {}
-      // 2) Nisbətən JSON
       try {
         const r2 = await fetch('login-users.json?ts=' + Date.now(), { cache: 'no-store' });
         if (r2.ok) return await r2.json();
       } catch (e) {}
-      // 3) Fallback: JS faylı (window.LOGIN_USERS)
       await new Promise((resolve, reject) => {
         const s = document.createElement('script');
         s.src = '/login-users.js?ts=' + Date.now();
         s.onload = resolve;
-        s.onerror = () => reject(new Error('login-users.js yüklənmədi'));
+        s.onerror = () => reject(new Error('login-users.js failed to load'));
         document.head.appendChild(s);
       });
       if (Array.isArray(window.LOGIN_USERS)) return window.LOGIN_USERS;
-      throw new Error('İstifadəçi siyahısı tapılmadı');
+      throw new Error('User list not found');
     }
 
     async function login(ev) {
@@ -77,10 +74,9 @@
           errorMsg.textContent = "❌ Incorrect Student ID or Password";
         }
       } catch (err) {
-        errorMsg.textContent = 'Xəta: ' + err.message;
+        errorMsg.textContent = "Error: " + err.message;
       }
     }
   </script>
 </body>
 </html>
-
