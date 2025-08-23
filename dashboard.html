@@ -25,7 +25,6 @@
     }
     .profile {
       position:relative;
-      cursor:pointer;
     }
     .profile span {
       background:#fff;
@@ -33,6 +32,7 @@
       font-weight:bold;
       padding:8px 12px;
       border-radius:20px;
+      cursor:pointer;
     }
     .dropdown {
       display:none;
@@ -64,13 +64,6 @@
     .dropdown a:hover {
       background:#f0f4fa;
     }
-
-    /* 🔥 Əlavə düzəliş: həm profil, həm də menyu hoverdə qalanda açıq olsun */
-    .profile:hover .dropdown,
-    .dropdown:hover {
-      display:block;
-    }
-
     .content {
       padding:40px 20px;
       max-width:800px;
@@ -87,8 +80,8 @@
   <div class="navbar">
     <h1>Student Dashboard</h1>
     <div class="profile">
-      <span>👤 Profile</span>
-      <div class="dropdown">
+      <span onclick="toggleMenu()">👤 Profile</span>
+      <div class="dropdown" id="dropdownMenu">
         <p>My Files</p>
         <a href="admission-letter.pdf" target="_blank">📄 Acceptance Letter</a>
         <a href="diploma.pdf" target="_blank">📄 Diploma</a>
@@ -105,5 +98,20 @@
       in the top right corner under your profile.
     </p>
   </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Menyudan kənara klik edəndə bağlansın
+    window.addEventListener('click', function(e) {
+      const profile = document.querySelector('.profile');
+      if (!profile.contains(e.target)) {
+        document.getElementById('dropdownMenu').style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
