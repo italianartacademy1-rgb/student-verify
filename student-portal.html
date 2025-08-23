@@ -16,98 +16,68 @@
       align-items: center;
       height: 100vh;
     }
-
-    .portal-container {
-      background-color: #ffffff;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    .portal-logo {
-      width: 150px;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      color: #1D3C6E;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #333;
-      font-size: 14px;
-      margin-bottom: 30px;
-    }
-
-    input[type="text"], input[type="password"] {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background-color: #1D3C6E;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background-color: #163058;
-    }
-
-    .error {
-      color: red;
-      font-size: 14px;
-      margin-top: 10px;
-    }
+    .portal-container { background:#fff; padding:40px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.2); width:100%; max-width:400px; text-align:center; }
+    .portal-logo { width:150px; margin-bottom:20px; }
+    h1 { color:#1D3C6E; margin-bottom:10px; }
+    p  { color:#333; font-size:14px; margin-bottom:30px; }
+    input[type="text"], input[type="password"] { width:100%; padding:12px; margin-bottom:20px; border:1px solid #ccc; border-radius:5px; font-size:14px; }
+    button { width:100%; padding:12px; background:#1D3C6E; color:#fff; font-size:16px; border:none; border-radius:5px; cursor:pointer; font-weight:bold; }
+    button:hover { background:#163058; }
+    .error { color:red; font-size:14px; margin-top:10px; }
   </style>
 </head>
 <body>
   <div class="portal-container">
     <img src="Logo_PAIU-scaled2.webp" alt="PAIU Logo" class="portal-logo">
-
     <h1>Student Portal</h1>
     <p>Login to access your courses, documents, and more.</p>
 
     <input type="text" id="studentId" placeholder="Student ID" required>
     <input type="password" id="password" placeholder="Password" required>
-    <button onclick="login()">Login</button>
+    <button onclick="login(event)">Login</button>
     <p id="errorMsg" class="error"></p>
   </div>
 
   <script>
-    async function login() {
-      const id = document.getElementById("studentId").value.trim();
-      const pass = document.getElementById("password").value.trim();
-      const errorMsg = document.getElementById("errorMsg");
+    async function loadUsers() {
+      // 1) Rootdan JSON
+      try {
+        const r1 = await fetch('/login-users.json?ts=' + Date.now(), { cache: 'no-store' });
+        if (r1.ok) return await r1.json();
+      } catch (e) {}
+      // 2) Nisbətən JSON
+      try {
+        const r2 = await fetch('login-users.json?ts=' + Date.now(), { cache: 'no-store' });
+        if (r2.ok) return await r2.json();
+      } catch (e) {}
+      // 3) Fallback: JS faylı (window.LOGIN_USERS)
+      await new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = '/login-users.js?ts=' + Date.now();
+        s.onload = resolve;
+        s.onerror = () => reject(new Error('login-users.js yüklənmədi'));
+        document.head.appendChild(s);
+      });
+      if (Array.isArray(window.LOGIN_USERS)) return window.LOGIN_USERS;
+      throw new Error('İstifadəçi siyahısı tapılmadı');
+    }
+
+    async function login(ev) {
+      if (ev && ev.preventDefault) ev.preventDefault();
+      const id = document.getElementById('studentId').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const errorMsg = document.getElementById('errorMsg');
 
       try {
-        const response = await fetch("login-users.json");
-        const students = await response.json();
-
+        const students = await loadUsers();
         const user = students.find(s => s.studentId === id && s.password === pass);
-
         if (user) {
-          // Uğurlu giriş
-          window.location.href = "dashboard.html";
+          window.location.href = 'dashboard.html';
         } else {
-          errorMsg.textContent = "❌ Yanlış Student ID və ya Password";
+          errorMsg.textContent = '❌ Yanlış Student ID və ya Password';
         }
       } catch (err) {
-        errorMsg.textContent = "Xəta: login-users.json oxunmadı!";
+        errorMsg.textContent = 'Xəta: ' + err.message;
       }
     }
   </script>
