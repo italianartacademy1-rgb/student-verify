@@ -2,62 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- mobil uyğunluq -->
-  <title>My Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
   <link rel="icon" href="/favicon.png" type="image/png">
   <style>
     body {
       font-family: Arial, sans-serif;
-      background:#f4f4f4;
-      padding:20px;
       margin:0;
+      background:#f4f4f4;
+    }
+    .navbar {
+      background:#1D3C6E;
+      padding:15px 20px;
       display:flex;
-      justify-content:center;
+      justify-content:space-between;
       align-items:center;
-      min-height:100vh;
+      color:#fff;
     }
-    .card {
+    .navbar h1 {
+      font-size:1.2em;
+      margin:0;
+    }
+    .profile {
+      position:relative;
+      cursor:pointer;
+    }
+    .profile span {
       background:#fff;
-      padding:20px;
-      border-radius:10px;
-      box-shadow:0 0 10px rgba(0,0,0,0.1);
-      max-width:600px;  /* kompüterdə genişlik 600px */
-      width:100%;       /* telefonda ekranı tam tutsun */
-      box-sizing:border-box;
-      text-align:center;
-    }
-    h1 {
       color:#1D3C6E;
-      font-size:1.5em;
-      margin-bottom:10px;
+      font-weight:bold;
+      padding:8px 12px;
+      border-radius:20px;
     }
-    p {
-      margin-bottom:20px;
+    .dropdown {
+      display:none;
+      position:absolute;
+      right:0;
+      top:40px;
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:6px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      min-width:200px;
+      z-index:1000;
+    }
+    .dropdown p {
+      margin:0;
+      padding:10px;
+      font-weight:bold;
+      color:#1D3C6E;
+      border-bottom:1px solid #eee;
+    }
+    .dropdown a {
+      display:block;
+      padding:10px;
+      text-decoration:none;
       color:#333;
     }
-    a {
-      display:block;
-      margin:12px 0;
-      padding:12px;
-      background:#1D3C6E;
-      color:#fff;
-      text-decoration:none;
-      font-weight:bold;
-      border-radius:6px;
-      transition:background 0.3s;
+    .dropdown a:hover {
+      background:#f0f4fa;
     }
-    a:hover {
-      background:#163058;
+    .profile:hover .dropdown {
+      display:block;
+    }
+    .content {
+      padding:40px 20px;
+      max-width:800px;
+      margin:auto;
+      text-align:center;
+    }
+    h2 {
+      color:#1D3C6E;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Welcome to Your Dashboard</h1>
-    <p>Download your academic documents below:</p>
-    <a href="admission-letter.pdf" target="_blank">📄 Admission Letter - Babak Abdullayev</a>
-    <a href="diploma.pdf" target="_blank">📄 Diploma - Babak Abdullayev</a>
-    <a href="transcript.pdf" target="_blank">📄 Transcript - Babak Abdullayev</a>
+  <!-- Navbar with profile -->
+  <div class="navbar">
+    <h1>Student Dashboard</h1>
+    <div class="profile">
+      <span>👤 Profile</span>
+      <div class="dropdown">
+        <p>My Files</p>
+        <a href="admission-letter.pdf" target="_blank">📄 Acceptance Letter</a>
+        <a href="diploma.pdf" target="_blank">📄 Diploma</a>
+        <a href="transcript.pdf" target="_blank">📄 Transcript</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page content -->
+  <div class="content">
+    <h2>Welcome to Your Dashboard</h2>
+    <p>
+      Access all your academic documents through the <strong>My Files</strong> section
+      in the top right corner under your profile.
+    </p>
   </div>
 </body>
 </html>
