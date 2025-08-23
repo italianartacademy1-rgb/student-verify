@@ -74,7 +74,7 @@
         if (user) {
           window.location.href = 'dashboard.html';
         } else {
-          errorMsg.textContent = '❌ Yanlış Student ID və ya Password';
+          errorMsg.textContent = "❌ Incorrect Student ID or Password";
         }
       } catch (err) {
         errorMsg.textContent = 'Xəta: ' + err.message;
@@ -83,3 +83,4 @@
   </script>
 </body>
 </html>
+
